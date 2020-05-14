@@ -39,6 +39,7 @@ export default ({ children, location }) => (
 
       let rootPath = `/`
       let postsPath = `/posts`
+      let projectsPath = `/projects`
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
