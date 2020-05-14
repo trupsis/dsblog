@@ -15,6 +15,7 @@ class BlogIndex extends React.Component {
       'props.data.cosmicjsSettings.metadata.site_title'
     )
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
+    const projects = get(this, 'props.data.allCosmicjsProjects.edges')
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
 
@@ -23,6 +24,26 @@ class BlogIndex extends React.Component {
         <Helmet title={siteTitle} />
         <Bio settings={author} />
         {posts.map(({ node }) => {
+          const title = get(node, 'title') || node.slug
+          return (
+            <div key={node.slug}>
+              <h3
+                style={{
+                  marginBottom: rhythm(1 / 4),
+                }}
+              >
+                <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
+                  {title}
+                </Link>
+              </h3>
+              <small>{node.published_at}</small>
+              <p
+                dangerouslySetInnerHTML={{ __html: node.metadata.description }}
+              />
+            </div>
+          )
+        })}
+        {projects.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
             <div key={node.slug}>
@@ -52,6 +73,18 @@ export default BlogIndex
 export const pageQuery = graphql`
   query IndexQuery {
     allCosmicjsPosts(sort: { fields: [published_at], order: DESC }, limit: 1000) {
+      edges {
+        node {
+          metadata {
+            description
+          }
+          slug
+          title
+          published_at(formatString: "DD MMMM, YYYY")
+        }
+      }
+    }
+    allCosmicjsProjects(sort: { fields: [published_at], order: DESC }, limit: 1000) {
       edges {
         node {
           metadata {

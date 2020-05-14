@@ -42,9 +42,10 @@ export default ({ children, location }) => (
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
+        projectsPath = __PATH_PREFIX__ + `/projects`
       }
 
-      if (location.pathname === rootPath || location.pathname === postsPath) {
+      if (location.pathname === rootPath || location.pathname === postsPath || location.pathname === projectsPath) {
         header = (
           <BackgroundImage
             Tag="div"
