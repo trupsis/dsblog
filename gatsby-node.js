@@ -16,7 +16,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allCosmicjsPosts(sort: { fields: [created], order: DESC }, limit: 1000) {
+            allCosmicjsPosts(sort: { fields: [published-at], order: DESC }, limit: 1000) {
               edges {
                 node {
                   slug,

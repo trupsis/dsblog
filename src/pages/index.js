@@ -35,7 +35,7 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.created}</small>
+              <small>{node.published-at}</small>
               <p
                 dangerouslySetInnerHTML={{ __html: node.metadata.description }}
               />
@@ -51,7 +51,7 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allCosmicjsPosts(sort: { fields: [created], order: DESC }, limit: 1000) {
+    allCosmicjsPosts(sort: { fields: [published-at], order: DESC }, limit: 1000) {
       edges {
         node {
           metadata {
@@ -59,7 +59,7 @@ export const pageQuery = graphql`
           }
           slug
           title
-          created(formatString: "DD MMMM, YYYY")
+          published-at(formatString: "DD MMMM, YYYY")
         }
       }
     }
