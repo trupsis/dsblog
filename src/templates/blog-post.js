@@ -64,7 +64,7 @@ class BlogPostTemplate extends React.Component {
             marginTop: rhythm(-0.6),
           }}
         >
-          {post.published-at}
+          {post.published_at}
         </p>
         <BackgroundImage
           Tag="div"
@@ -124,7 +124,7 @@ export const pageQuery = graphql`
       id
       content
       title
-      published-at(formatString: "MMMM DD, YYYY")
+      published_at(formatString: "MMMM DD, YYYY")
       metadata {
         hero {
           local {
